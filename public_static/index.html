@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Relocation Notice | Yukari Jessica Tham</title>
+  <meta name="description" content="Yukari Jessica Tham's website has moved to a new address. You will be redirected automatically.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --primary-hover: #3730a3;
+      --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.06);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      font-family: var(--font-body);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* Decorative background glow */
+    .glow-sphere {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.04) 0%, rgba(99, 102, 241, 0) 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .glow-1 { top: -100px; left: -100px; }
+    .glow-2 { bottom: -100px; right: -100px; }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 28px;
+      padding: 48px 40px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
+      text-align: center;
+      z-index: 1;
+      position: relative;
+      animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(99, 102, 241, 0.08);
+      border: 1px solid rgba(99, 102, 241, 0.15);
+      border-radius: 100px;
+      color: var(--primary-color);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: var(--font-title);
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #0f172a 40%, #312e81 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.06) 50%, rgba(0, 0, 0, 0) 100%);
+      margin: 24px 0;
+    }
+
+    p.description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    /* Countdown Styling */
+    .countdown-container {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 32px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .progress-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(-90deg);
+    }
+
+    .progress-ring__circle {
+      stroke-dasharray: 238.76; /* 2 * PI * 38 */
+      stroke-dashoffset: 0;
+      transition: stroke-dashoffset 0.1s linear;
+      transform-origin: 50% 50%;
+    }
+
+    .countdown-number {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .redirect-status {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: -16px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control-btn {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      color: var(--text-secondary);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .control-btn:hover {
+      background: rgba(0, 0, 0, 0.03);
+      color: var(--text-primary);
+    }
+
+    /* Buttons */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-secondary {
+      background: #f1f5f9;
+      color: var(--text-primary);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-secondary:hover {
+      background: #e2e8f0;
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-sphere glow-1"></div>
+  <div class="glow-sphere glow-2"></div>
+
+  <div class="card">
+    <span class="badge">Website Relocation</span>
+    <h1>We Have Moved!</h1>
+    <div class="subtitle">Yukari Jessica Tham's Academic Website</div>
+    
+    <div class="divider"></div>
+    
+    <p class="description">
+      Thank you for visiting. This website has been migrated to Google Sites to provide an updated and more accessible experience.
+    </p>
+
+    <!-- Countdown Timer -->
+    <div class="countdown-container">
+      <svg width="90" height="90" class="progress-ring">
+        <circle stroke="rgba(0, 0, 0, 0.04)" stroke-width="6" fill="transparent" r="38" cx="45" cy="45"/>
+        <circle class="progress-ring__circle" stroke="var(--primary-color)" stroke-width="6" fill="transparent" r="38" cx="45" cy="45"/>
+      </svg>
+      <div class="countdown-number" id="countdown">5</div>
+    </div>
+
+    <div class="redirect-status">
+      <span id="status-text">Redirecting automatically...</span>
+      <button class="control-btn" id="pause-btn">Pause</button>
+    </div>
+
+    <!-- Actions -->
+    <div class="btn-group">
+      <a href="https://sites.google.com/view/yukarijessicatham/" class="btn btn-primary" id="redirect-link">
+        Go to New Site (English)
+      </a>
+      <a href="./ja/" class="btn btn-secondary">
+        日本語ページへ (Japanese)
+      </a>
+    </div>
+
+    <div class="footer">
+      &copy; 2026 Yukari Jessica Tham. All rights reserved.
+    </div>
+  </div>
+
+  <script>
+    const DESTINATION_URL = "https://sites.google.com/view/yukarijessicatham/";
+    let timeLeft = 5000; // 5 seconds in milliseconds
+    const INTERVAL = 100; // Update every 100ms for smooth circle animation
+    let timerId = null;
+    let isPaused = false;
+
+    const countdownEl = document.getElementById('countdown');
+    const statusTextEl = document.getElementById('status-text');
+    const pauseBtn = document.getElementById('pause-btn');
+    const circle = document.querySelector('.progress-ring__circle');
+    
+    const radius = circle.r.baseVal.value;
+    const circumference = radius * 2 * Math.PI;
+
+    circle.style.strokeDasharray = `${circumference} ${circumference}`;
+    circle.style.strokeDashoffset = 0;
+
+    function setCircleProgress(percent) {
+      const offset = circumference - (percent / 100 * circumference);
+      circle.style.strokeDashoffset = offset;
+    }
+
+    function updateTimer() {
+      if (isPaused) return;
+
+      timeLeft -= INTERVAL;
+      
+      // Update countdown text
+      const secondsDisplay = Math.ceil(timeLeft / 1000);
+      countdownEl.textContent = Math.max(0, secondsDisplay);
+
+      // Update circular indicator
+      const percent = (timeLeft / 5000) * 100;
+      setCircleProgress(percent);
+
+      if (timeLeft <= 0) {
+        clearInterval(timerId);
+        window.location.href = DESTINATION_URL;
+      }
+    }
+
+    function startTimer() {
+      timerId = setInterval(updateTimer, INTERVAL);
+    }
+
+    pauseBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      if (isPaused) {
+        pauseBtn.textContent = 'Resume';
+        statusTextEl.textContent = 'Redirect paused';
+        circle.style.stroke = 'var(--text-muted)';
+      } else {
+        pauseBtn.textContent = 'Pause';
+        statusTextEl.textContent = 'Redirecting automatically...';
+        circle.style.stroke = 'var(--primary-color)';
+      }
+    });
+
+    // Start timer on page load
+    startTimer();
+  </script>
+</body>
+</html>
